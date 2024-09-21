@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Proteina grande",
+    "description": "Branded",
+    "price": 40000,
+    "img": "no image",
+    "code": "abc555",
+    "stock": 40
+  },
+  {
+    "id": 2,
+    "title": "Proteina pequena",
+    "description": "Branded",
+    "price": 20000,
+    "img": "no image",
+    "code": "abc777",
+    "stock": 40
+  },
+  {
+    "id": 3,
+    "title": "Proteina mediana",
+    "description": "Branded",
+    "price": 30000,
+    "img": "no image",
+    "code": "abc666",
+    "stock": 45
+  },
+  {
+    "id": 4,
+    "title": "Creatina grande",
+    "description": "Branded",
+    "price": 40000,
+    "img": "no image",
+    "code": "def555",
+    "stock": 40
+  },
+  {
+    "id": 5,
+    "title": "Creatina pequena",
+    "description": "Branded",
+    "price": 20000,
+    "img": "no image",
+    "code": "def777",
+    "stock": 20
+  },
+  {
+    "id": 6,
+    "title": "Creatina mediana",
+    "description": "Branded",
+    "price": 30000,
+    "img": "no image",
+    "code": "def666",
+    "stock": 50
+  },
+  {
+    "id": 7,
+    "title": "Barras chocolate",
+    "description": "Branded",
+    "price": 20000,
+    "img": "no image",
+    "code": "ghi555",
+    "stock": 80
+  },
+  {
+    "id": 8,
+    "title": "Barras mani",
+    "description": "Branded",
+    "price": 20000,
+    "img": "no image",
+    "code": "ghi666",
+    "stock": 20
+  },
+  {
+    "id": 9,
+    "title": "Barras oreo",
+    "description": "Branded",
+    "price": 25000,
+    "img": "no image",
+    "code": "ghi777",
+    "stock": 150
+  }
+]
