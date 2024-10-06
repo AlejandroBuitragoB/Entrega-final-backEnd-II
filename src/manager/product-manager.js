@@ -109,11 +109,14 @@ async deleteProduct(id) {
             productArray.splice(index, 1); 
             await this.saveFile(productArray); 
             console.log("Product deleted"); 
+            return true;
         } else {
             console.log("Product not found"); 
+            return false;
         }
     } catch (error) {
         console.log("There's an error while deleting product"); 
+        throw error;
     }
 }
 

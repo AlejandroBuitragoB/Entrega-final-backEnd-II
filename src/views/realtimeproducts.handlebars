@@ -1,0 +1,36 @@
+<h1>Express handlebars products and handlebars</h1>
+
+
+<section>
+<div id="productsContainer"></div>
+</section>
+
+
+<section class="section-form">
+
+<h2>Add Product</h2>
+
+<form id="product-form">
+    <label for="title">Titulo:</label>
+    <input type="text" id="product-title" name="title" required>
+
+    <label for="description">Descripción:</label>
+    <input type="text" id="product-description" name="description" required>
+
+    <label for="price">Precio:</label>
+    <input type="number" id="product-price" name="price" required>
+
+    <label for="code">Codigo:</label>
+    <input type="text" id="product-code" name="code" required>
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="product-stock" name="stock" required>
+
+    <button type="submit"> Add Product</button>
+</form>
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+
+<script src="js/main.js"></script>
