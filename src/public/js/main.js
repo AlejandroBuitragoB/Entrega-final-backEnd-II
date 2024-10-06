@@ -48,12 +48,12 @@ const form = document.getElementById("product-form");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-
+  
   const productTitle = document.getElementById("product-title").value;
   const productDescription = document.getElementById("product-description").value;
-  const productPrice = document.getElementById("product-price").value;
+  const productPrice = parseFloat(document.getElementById("product-price").value);
   const productCode = document.getElementById("product-code").value;
-  const productStock = document.getElementById("product-stock").value;
+  const productStock = parseInt(document.getElementById("product-stock").value);
 
   const AddNewProducts = {
     title: productTitle,
@@ -68,8 +68,9 @@ form.addEventListener("submit", (event) => {
 });
 
 socket.on("products", (data) => {
-    productsRender(data); // Renderiza los productos en la interfaz
-});
+    productsRender(data);
+  });
+  
 
 
 

@@ -18,7 +18,7 @@ class ProductManager {
     }
   
     async addProduct({title, description, price, img, code, stock}) {
-      if (!title || !description || !price || !img || !code || !stock) {
+      if (!title || !description || !price || !code || !stock) {
         console.log("All fields are mandatory");
         return;
       }

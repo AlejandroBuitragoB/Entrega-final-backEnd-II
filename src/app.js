@@ -68,9 +68,15 @@ io.on("connection", async (socket) => {
 
       //add Product
 
-
-    socket.on('addProducts', (AddNewProducts) =>{
-        console.log(AddNewProducts)
+      socket.on('addProducts', async (AddNewProducts) => {
+        try {
+            const newProduct = await manager.addProduct(AddNewProducts);
+            const updatedProducts = await manager.getProducts();
+            io.emit("products", updatedProducts);
+        } catch (error) {
+            console.error("Error al agregar producto:", error);
+            socket.emit("error", { message: "Error al agregar producto." });
+        }
     });
 
 });

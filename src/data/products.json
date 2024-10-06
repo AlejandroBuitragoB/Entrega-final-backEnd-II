@@ -70,5 +70,13 @@
     "img": "no image",
     "code": "ghi777",
     "stock": 150
+  },
+  {
+    "id": 10,
+    "title": "Producto prueba",
+    "description": "Este es un producto de prueba",
+    "price": 20000,
+    "code": "bnm789",
+    "stock": 40
   }
 ]
