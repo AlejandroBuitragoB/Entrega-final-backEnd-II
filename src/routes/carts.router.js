@@ -1,15 +1,19 @@
 import { Router } from "express";
-import { addProductToCart, createCart, getCartById } from "../controllers/carts.controllers.js";
+import { addProductToCart, createCart, getCartById, deleteProductsInCart, updateProductsInCart, deleteCart } from "../controllers/carts.controllers.js";
 
 const router = Router();
 
-router.post("/", getCartById)
+router.get("/:cid", getCartById);
 
-router.get("/:cid", createCart)
+router.post("/", createCart);
 
+router.post("/:cid/product/:pid", addProductToCart);
 
+router.delete('/:cid/products/:pid', deleteProductsInCart);
 
-router.post("/:cid/product/:pid", addProductToCart)
+router.put('/:cid/products/:pid', updateProductsInCart);
+
+router.delete('/:cid', deleteCart);
 
 
 

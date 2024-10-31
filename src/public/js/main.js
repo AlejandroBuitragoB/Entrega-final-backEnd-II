@@ -13,14 +13,14 @@ const productsRender = (products) => {
     const card = document.createElement("div");
 
     card.innerHTML = `
-    <p> ${item.id}</p>
+    <p> ${item._id}</p>
     <p> ${item.title}</p>
     <p> ${item.description}</p>
     <p> ${item.price}</p>
     <p> ${item.img}</p>
     <p> ${item.code}</p>
     <p> ${item.stock}</p>
-    <button class="delete-btn" data-id="${item.id}"> delete </button>
+    <button class="delete-btn" data-id="${item._id}"> delete </button>
     <br></br>
     `;
     productsContainer.appendChild(card);
@@ -63,7 +63,7 @@ form.addEventListener("submit", (event) => {
     stock: productStock,
   };
 
-  socket.emit("addProducts", AddNewProducts);
+  socket.emit("addProduct", AddNewProducts);
   form.reset();
 });
 

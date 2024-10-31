@@ -9,6 +9,13 @@ const productsSchema = new mongoose.Schema({
     stock: {type: Number, required:[true, "product price is mandatory"]},
 });
 
+productsSchema.set('toJSON',{
+    transform: function(doc,ret){
+        delete ret.__v;
+        return ret;
+    }
+});
+
 const ProductsModel = mongoose.model("products", productsSchema);
 
 

@@ -7,6 +7,8 @@ import exphbs from "express-handlebars";
 import { Server } from "socket.io";
 import http from "http";
 import ProductsModel from "./models/products.models.js";
+import { deleteProduct } from "./controllers/products.controllers.js";
+import { getProductsServices, addProductServices } from "./services/products.services.js";
 
 const app = express();
 const PORT = 8080;
@@ -42,44 +44,40 @@ httpServer.listen(PORT, () => {
 
 
 io.on("connection", async(socket) => {
-    console.log("Un cliente se conecto");
-const products = await ProductsModel.find()
-    socket.emit("products", products);
+const {payload} = await getProductsServices({});
+const products = payload
+    socket.emit("products", payload);
 
     //add product
 
-    socket.on("addProduct", product => {
-        const newProduct = ProductsModel.create({...product});
+    socket.on("addProduct", async (product) => {
+        const newProduct = await addProductServices({...product});
         if(newProduct){
-            products.push()
+          products.push(newProduct)
             socket.emit("products", products);
         }
             
     });
 
-    //delete product
+    // delete product
 
-    // socket.on('deleteProduct', async (productId) => {
-    //     try {
-    //         console.log("Received ID to delete:", productId);
-    //         const id = Number(productId);
-    //         const result = await manager.deleteProduct(id);
+    socket.on('deleteProduct', async (productId) => {
+        try {
+            console.log("Received ID to delete:", productId);
+            const result = await ProductsModel.findByIdAndDelete(productId); // No es necesario convertir a Number
             
-    //         if (result === undefined) {
-    //             socket.emit("error", { message: "Product not found." });
-    //         } else {
-    //             const updatedProducts = await ProductsModel;
-    //             io.emit("products", updatedProducts); 
-    //         }
-    //     } catch (error) {
-    //         console.error("Error while deleting the product", error);
-    //         socket.emit("error", { message: "Error while deleting the product" });
-    //     }
-    // });
-
-
-
-
+            if (result === null) {
+                socket.emit("error", { message: "Product not found." });
+            } else {
+                // Obtener la lista actualizada de productos
+                const updatedProducts = await ProductsModel.find(); // Asegúrate de obtener todos los productos
+                io.emit("products", updatedProducts); // Emitir la lista actualizada a todos los clientes
+            }
+        } catch (error) {
+            console.error("Error while deleting the product", error);
+            socket.emit("error", { message: "Error while deleting the product" });
+        }
+    });
 
 });
     
