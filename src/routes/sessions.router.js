@@ -87,8 +87,6 @@ router.get("/current", passport.authenticate("current", {session: false}), async
             if (!cart) {
                     return res.status(404).send("Cart not found");
                 }
-    
-                // Renderiza la vista "home", pasando el first_name y el carrito
                 res.render("home", {first_name: req.user.first_name, cart: cart});
         } catch (error) {
             res.status(500).send("Error loading cart");
