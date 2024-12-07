@@ -11,16 +11,6 @@ router.get("/products", async (req, res) => {
     }
 })
 
-
-// router.get("/products", async (req, res) => {
-//     try {
-//        const {payload} = await getProductsServices({...req.query});
-//         return res.render("index", {products: payload});
-//     } catch (error) {
-//         res.status(500).send("Fatal error");
-//     }
-// })
-
 router.get("/realtimeproducts", async (req, res) =>{
     try {
         res.render("realtimeproducts");
@@ -29,5 +19,13 @@ router.get("/realtimeproducts", async (req, res) =>{
     }
 })
 
+
+router.get("/login", (req, res) => {
+    res.render("login");
+})
+
+router.get("/register", (req, res) => {
+    res.render("register");
+})
 
 export default router;

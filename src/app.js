@@ -9,6 +9,12 @@ import http from "http";
 import ProductsModel from "./models/products.models.js";
 import { deleteProduct } from "./controllers/products.controllers.js";
 import { getProductsServices, addProductServices } from "./services/products.services.js";
+import "./database.js";
+import initializePassport from "./config/passport.config.js";
+import sessionRouter from "./routes/sessions.router.js";
+
+import cookieParser from "cookie-parser";
+import passport from "passport";
 
 const app = express();
 const PORT = 8080;
@@ -16,9 +22,9 @@ const PORT = 8080;
 // import { Server } from "socket.io";
 // import { engine } from "express-handlebars";
 
-mongoose.connect("mongodb+srv://alejandrobuitragob:Inicio.0001@cluster0.u2v5d.mongodb.net/entregaFinalBackEnd?retryWrites=true&w=majority&appName=Cluster0")
-      .then(()=> console.log("Conectados a los BD"))
-      .catch((error) => console.log("Tenemos un problema", error))
+// mongoose.connect("mongodb+srv://alejandrobuitragob:Inicio.0001@cluster0.u2v5d.mongodb.net/entregaFinalBackEnd?retryWrites=true&w=majority&appName=Cluster0")
+//       .then(()=> console.log("Conectados a los BD"))
+//       .catch((error) => console.log("Tenemos un problema", error))
 
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
@@ -27,11 +33,15 @@ const io = new Server(httpServer);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
+app.use(passport.initialize());
+initializePassport();
 app.use(express.static("./src/public"));
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/", viewsRouter);
+app.use("/api/sessions", sessionRouter);
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");

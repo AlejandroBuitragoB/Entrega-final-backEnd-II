@@ -27,13 +27,13 @@
     <span>Filter by: {{products.query}}</span><br>
     {{/if}}
 
-    {{#if products.hasPrevPage}} <!-- Cambia result a products -->
+    {{#if products.hasPrevPage}} 
     <a href="?page={{products.prevPage}}&limit={{products.limit}}{{#if products.query}}&query={{products.query}}{{/if}}">Previous</a>
     {{/if}}
 
     <span>Page {{products.page}} out of {{products.totalPages}}</span>
 
-    {{#if products.hasNextPage}} <!-- Cambia result a products -->
+    {{#if products.hasNextPage}} 
     <a href="?page={{products.nextPage}}&limit={{products.limit}}{{#if products.query}}&query={{products.query}}{{/if}}">Next</a>
     {{/if}}
 </div>
