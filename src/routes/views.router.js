@@ -1,8 +1,12 @@
 import { Router } from "express";
 import { getProductsServices } from "../services/products.services.js";
+import passport from "passport";
+
+import { soloAdmin, soloUser } from "../middleware/auth.js";
+
 const router = Router();
 
-router.get("/products", async (req, res) => {
+router.get("/products", passport.authenticate("jwt", {session: false}), soloUser, async (req, res) => {
     try {
        const result = await getProductsServices({...req.query});
     res.render("products", {products: result});
@@ -11,7 +15,7 @@ router.get("/products", async (req, res) => {
     }
 })
 
-router.get("/realtimeproducts", async (req, res) =>{
+router.get("/realtimeproducts",passport.authenticate("jwt", {session: false}), soloAdmin ,(req, res) =>{
     try {
         res.render("realtimeproducts");
     } catch (error) {

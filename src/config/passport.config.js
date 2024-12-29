@@ -14,7 +14,7 @@ const cookieExtractor = req => {
 }
 
 const initializePassport = () => {
-    passport.use("current", new JWTStrategy({
+    passport.use("jwt", new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
         secretOrKey: "coderhouse",
     }, 

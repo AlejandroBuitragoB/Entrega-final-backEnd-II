@@ -1,6 +1,9 @@
 import { request, response } from "express";
-import  CartsModel  from "../models/carts.models.js";
 import { getCartByIdServices, createCartServices, addProductToCartServices, deleteProductsInCartServices, deleteCartServices, updateProductsInCartServices } from "../services/carts.services.js";
+import { purchase } from "../services/purchase.services.js";
+
+
+
 
 export const getCartById = async (req = request, res= response) => {
   try {
@@ -85,3 +88,23 @@ const cart = await deleteCartServices(cid);
     return res.status(500).json({ msg: "contact support" });
   }
 }
+
+export const purchaseController = async (req = request, res = response) => {
+  try {
+    const { cid } = req.params; 
+    const user = req.user; 
+
+    const { ticket, updatedProducts, failedProducts, totalAmount, userEmail } = await purchase(cid, user);
+
+    return res.status(200).json({
+      msg: `Purchase completed. Ticket ID: ${ticket._id}, Total: ${totalAmount}, User: ${userEmail}`,
+      purchaseData: {
+        ticket,
+        processedProducts: updatedProducts,
+        nonProcessedProducts: failedProducts,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: `Error while processing purchase: ${error.message}` });
+  }
+};

@@ -1,4 +1,4 @@
-import  ProductsModel  from "../models/products.models.js"
+import  ProductsModel  from "../dao/models/products.models.js"
 
 export const getProductsServices = async ({limit=2, page= 1, sort, query}) =>{
     try {
@@ -108,3 +108,26 @@ export const getProductsByIdServices = async (pid) => {
         }
       };
       
+
+      export const updateProductStock = async (pid, quantity) => {
+        try {
+          const product = await ProductsModel.findById(pid);
+      
+          if (!product) {
+            throw new Error(`Producto con ID ${pid} no encontrado.`);
+          }
+
+          if (product.stock < quantity) {
+            throw new Error(`No hay suficiente stock para el producto con ID ${pid}. Stock disponible: ${product.stock}`);
+          }
+      
+          product.stock -= quantity;
+      
+          const updatedProduct = await product.save();
+      
+          return updatedProduct; 
+        } catch (error) {
+          console.log("updateProductStock = ", error);
+          throw error;
+        }
+      };

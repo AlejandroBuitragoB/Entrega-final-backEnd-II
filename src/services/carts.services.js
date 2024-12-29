@@ -1,4 +1,5 @@
-import  CartsModel  from "../models/carts.models.js"
+import  CartsModel  from "../dao/models/carts.models.js"
+
 
 export const getCartByIdServices = async (cid) => {
   try {
@@ -74,4 +75,6 @@ export const deleteCartServices = async (cid) => {
     throw error;
   }
 }
+
+
 

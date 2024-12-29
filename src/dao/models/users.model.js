@@ -24,7 +24,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     cartId: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'carts'
     },
     rol: {
         type: String,
